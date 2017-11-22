@@ -1,0 +1,17 @@
+version: "2"
+services:
+
+  node:
+    image: node:6.12
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "8080:8000"
+    command: "npm run start"
+
+  mongo:
+    image: mongo:3.0 # exposed port is 27017

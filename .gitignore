@@ -1,0 +1,8 @@
+# globally ignored files
+.DS_Store 
+*.pyc 
+*~
+*.zip
+
+# node related files
+node_modules/
