@@ -12,6 +12,8 @@ npm install
 docker-compose up -d
 ```
 
+The app is now available at `localhost:8080`.
+
 ## Licence
 
 MIT
