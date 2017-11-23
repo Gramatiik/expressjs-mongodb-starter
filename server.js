@@ -16,12 +16,27 @@ var insertDocuments = function(db, data, callback) {
   });
 }
 
-app.get('/', (req, res) => {
-	MongoClient.connect(mongoUrl, (err, db) => {
-		db.collection('documents').find({}).toArray((err, docs) => {
-			res.json(docs);
+async function getDocuments() {
+	return new Promise( (resolve, reject) => {
+		MongoClient.connect(mongoUrl, (err, db) => {
+			db.collection('documents').find({}).toArray((err, docs) => {
+				if(err != null) reject(err);
+
+				resolve(docs);
+			});
 		});
 	});
+}
+
+app.get('/', async (req, res) => {
+	try {
+		var docs = await getDocuments();
+		res.json(docs);
+	} catch (e) {
+		res.json({
+			error: e
+		});
+	}
 });
 
 app.get('/populate', function (req, res) {
