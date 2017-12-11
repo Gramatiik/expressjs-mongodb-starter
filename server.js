@@ -14,9 +14,6 @@ const Promise = require('bluebird');
  * @return {Promise<void>}
  */
 async function server() {
-
-    console.log(Promise);
-
     /* Middlewares */
     app.use(helmet());
     app.use(bodyParser.json());
@@ -31,6 +28,7 @@ async function server() {
 
     /* Use routes */
     app.use(require('./routes/index.route'));
+    app.use(require('./routes/notes.route'));
 
     /* Send 404 error if no middleware handled the request */
     app.use((req, res, next) => {

@@ -63,7 +63,7 @@ router.put('/notes/:noteID', async (req, res) => {
  */
 router.delete('/notes/:noteID', async (req, res) => {
     try {
-        await User.deleteOne({ '_id': req.params.noteID });
+        await Note.deleteOne({ '_id': req.params.noteID });
         res.json({ status: 'OK', message: 'Deleted.' });
     } catch(e) {
         res.status(400).json({ status: 'Error', message: e.message });
